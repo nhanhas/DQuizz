@@ -1,0 +1,83 @@
+/* Defaults */
+body{
+	background-color: rgba(18, 18, 18, 1);
+	font-family: 'Open Sans',Verdana,Helvetica,sans-serif;
+}
+
+.text-green{
+	color:rgba(128, 193, 46, 1);
+}
+
+.text-white{
+	color:rgba(255, 255, 255, 1);
+}
+
+
+
+/* Home */
+.home-logo{
+	margin-top: 50px;
+}
+
+.home-logo img{
+	width: 70%;
+	max-width: 510px;
+}
+
+.home-hint{
+	position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+}
+
+.touch-area{
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+
+
+/* Header */
+.header{
+	position: fixed;	
+    left: 0;
+    right: 0;
+    background-color: black;
+	padding: 35px;
+}
+
+.header-logo img{
+	max-width: 350px;
+}
+
+.header-band{
+	position: fixed;
+    top: 135px;
+    left: 0;
+    right: 0;
+}
+
+.band-fragment{
+	width: 10%;
+    height: 3.5px;
+    float: left;
+}
+
+.band-color-1{ background-color: rgba(205	, 218	, 56	, 1); }
+.band-color-2{ background-color: rgba(70	, 184	, 86	, 1); }
+.band-color-3{ background-color: rgba(23	, 122	, 68	, 1); }
+.band-color-4{ background-color: rgba(14	, 86	, 58	, 1); }
+.band-color-5{ background-color: rgba(39	, 179	, 199	, 1); }
+.band-color-6{ background-color: rgba(107	, 198	, 237	, 1); }
+.band-color-7{ background-color: rgba(40	, 185	, 234	, 1); }
+.band-color-8{ background-color: rgba(28	, 141	, 191	, 1); }
+.band-color-9{ background-color: rgba(26	, 69	, 131	, 1); }
+.band-color-10{ background-color: rgba(3	, 52	, 121	, 1); }
+
+
+
