@@ -1,8 +1,14 @@
 /* Defaults */
+@font-face {
+    font-family: 'OpenSans-Light';
+    src: url('./assets/OpenSans-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
 body{
 	/*background-color: rgba(18, 18, 18, 1);*/
 	background-color: rgb(1, 1, 1); 
-	font-family: 'Open Sans',Verdana,Helvetica,sans-serif;
+	font-family: 'OpenSans-Light',Verdana,Helvetica,sans-serif;
 }
 
 .text-green{
