@@ -8,6 +8,8 @@ jQuery(document).ready(function($){
 function resetApp(){
 	$('#home').css('display','block');
 	$('#app').css('display','none');
+	/**/$('#view-0').css('display','block');
+	/**/$('#view-1').css('display','none');
 }
 
 //function to update quizz date and hour
@@ -52,4 +54,27 @@ function homeTouch(){
 	$('#home').css('display','none');
 	$('#app').css('display','block');
 
+}
+
+//#2 - Click "Avançar" in view 0 (Intro)
+function view0Click(){
+	$('#view-0').css('display','none');
+	$('#view-1').css('display','block');
+	$('#view-2').css('display','none');
+	$('#view-3').css('display','none');
+	$('#view-4').css('display','none');
+	$('#view-5').css('display','none');
+	$('#view-6').css('display','none');
+
+}
+
+//#2 - Click "Iniciar Quiz" in view 1 (Hints)
+function view1Click(){
+	$('#view-0').css('display','none');
+	$('#view-1').css('display','none');
+	$('#view-2').css('display','block');
+	$('#view-3').css('display','none');
+	$('#view-4').css('display','none');
+	$('#view-5').css('display','none');
+	$('#view-6').css('display','none');
 }
