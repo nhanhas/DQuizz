@@ -6,10 +6,17 @@ jQuery(document).ready(function($){
 
 //function to reset application
 function resetApp(){
-	$('#home').css('display','block');
-	$('#app').css('display','none');
+	$('#home').css('display','none');
+	$('#app').css('display','block');
+	/**/$('#view-a').css('display','none');
+	/**/$('#view-b').css('display','none');
 	/**/$('#view-0').css('display','block');
 	/**/$('#view-1').css('display','none');
+	/**/$('#view-2').css('display','none');
+	/**/$('#view-3').css('display','none');
+	/**/$('#view-4').css('display','none');
+	/**/$('#view-5').css('display','none');
+	/**/$('#view-6').css('display','none');
 }
 
 //function to update quizz date and hour
@@ -57,9 +64,11 @@ function homeTouch(){
 }
 
 //#2 - Click "Avançar" in view 0 (Intro)
-function view0Click(){
+function viewAClick(){
+	$('#view-a').css('display','none');
+	$('#view-b').css('display','block');
 	$('#view-0').css('display','none');
-	$('#view-1').css('display','block');
+	$('#view-1').css('display','none');
 	$('#view-2').css('display','none');
 	$('#view-3').css('display','none');
 	$('#view-4').css('display','none');
@@ -69,10 +78,12 @@ function view0Click(){
 }
 
 //#2 - Click "Iniciar Quiz" in view 1 (Hints)
-function view1Click(){
-	$('#view-0').css('display','none');
+function viewBClick(){
+	$('#view-a').css('display','none');
+	$('#view-b').css('display','none');
+	$('#view-0').css('display','block');
 	$('#view-1').css('display','none');
-	$('#view-2').css('display','block');
+	$('#view-2').css('display','none');
 	$('#view-3').css('display','none');
 	$('#view-4').css('display','none');
 	$('#view-5').css('display','none');
