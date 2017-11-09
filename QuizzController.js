@@ -172,7 +172,7 @@ function generateOptionsTemplate(question, options){
 				<div class="col-xs-6">\
 					<p>\
 						<input type="radio" id="'+options[0].optId+'" name="radio-group">\
-						<label class="font-bold font-36" class="font-bold font-36" for="'+options[0].optId+'">'+options[0].description+'</label>\
+						<label class="font-bold font-36" for="'+options[0].optId+'">'+options[0].description+'</label>\
 					</p>\
 				</div>\
 				<div class="col-xs-6">\
