@@ -19,6 +19,10 @@ function resetApp(){
 	/**/$('#view-4').css('display','none');
 	/**/$('#view-5').css('display','none');
 	/**/$('#view-6').css('display','none');
+	/**/$('#view-7').css('display','none');
+	/**/$('#view-8').css('display','none');
+	/**/$('#view-9').css('display','none');
+	/**/$('#view-10').css('display','none');
 }
 
 //function to update quizz date and hour
@@ -113,7 +117,7 @@ function generateQuestions(){
 		var isLastQuestion = (index === (questionsList.length - 1));
 		var questionTemplate = generateQuestionTemplate(questionsList[index], isLastQuestion);
 		
-		//add to generic Form
+		//add question title to generic Form
 		var e = document.getElementById('questions');
     	e.innerHTML += questionTemplate;
 
@@ -134,10 +138,10 @@ function generateQuestionTemplate(question, isLastQuestion){
 		<div id="view-'+question.id+'">\
 			<!-- generic page title -->\
 			<hr class="hr-green">\
-			<div class="q-number text-green">'+ ((question.id+1) <= 9? ("0"+(question.id+1)) : (question.id+1) )+'</div>\
-			<div class="q-text text-green"> \
-				<h3 class="q-text">'+ question.ask +'</h3>\
-				<span class="text-white">ESCOLHA UMA DAS SEGUINTES OPÇÕES:</span>\
+			<div class="q-number font-regular font-200 text-green">'+ ((question.id+1) <= 9? ("0"+(question.id+1)) : (question.id+1) )+'</div>\
+			<div class="q-text  text-green"> \
+				<h3 class="font-regular font-lg q-text">'+ question.ask +'</h3>\
+				<span class="font-bold font-22 text-white">ESCOLHA UMA DAS SEGUINTES OPÇÕES:</span>\
 			</div>\
 			<br>\
 			<hr class="hr-green">\
@@ -149,7 +153,7 @@ function generateQuestionTemplate(question, isLastQuestion){
 			<div class="footer">\
 				<div class="row">\
 					<div class="col-xs-2 col-xs-offset-5 text-center btn-green" onclick="viewClicked('+question.id+', '+isLastQuestion+')">\
-						<h4 class="text-white">PRÓXIMA</h4>\
+						<h4 class="font-bold font-xs text-white">PRÓXIMA</h4>\
 					</div>\
 				</div>\
 			</div>\
@@ -159,7 +163,7 @@ function generateQuestionTemplate(question, isLastQuestion){
 
 }
 
-//#4.1 - (AUX) Generate questions template
+//#4.2 - (AUX) Generate questions template
 function generateOptionsTemplate(question, options){
 	var template = '\
 			<!-- Questions -->\
@@ -167,14 +171,14 @@ function generateOptionsTemplate(question, options){
 			<div class="row text-white">\
 				<div class="col-xs-6">\
 					<p>\
-						<input type="radio" id="'+options[0].optId+'" name="radio-group" checked>\
-						<label for="'+options[0].optId+'">'+options[0].description+'</label>\
+						<input type="radio" id="'+options[0].optId+'" name="radio-group">\
+						<label class="font-bold font-36" class="font-bold font-36" for="'+options[0].optId+'">'+options[0].description+'</label>\
 					</p>\
 				</div>\
 				<div class="col-xs-6">\
 					<p>\
-						<input type="radio" id="'+options[1].optId+'" name="radio-group" checked>\
-						<label for="'+options[1].optId+'">'+options[1].description+'</label>\
+						<input type="radio" id="'+options[1].optId+'" name="radio-group">\
+						<label class="font-bold font-36" for="'+options[1].optId+'">'+options[1].description+'</label>\
 					</p>\
 				</div>\
 			</div>\
@@ -183,14 +187,14 @@ function generateOptionsTemplate(question, options){
 			<div class="row text-white">\
 				<div class="col-xs-6 text-white">\
 				<p>\
-					<input type="radio" id="'+options[2].optId+'" name="radio-group" checked>\
-						<label for="'+options[2].optId+'">'+options[2].description+'</label>\
+					<input type="radio" id="'+options[2].optId+'" name="radio-group">\
+					<label class="font-bold font-36" for="'+options[2].optId+'">'+options[2].description+'</label>\
 				</p>\
 				</div>\
 				<div class="col-xs-6">\
 				<p>\
-					<input type="radio" id="'+options[3].optId+'" name="radio-group" checked>\
-					<label for="'+options[3].optId+'">'+options[3].description+'</label>\
+					<input type="radio" id="'+options[3].optId+'" name="radio-group">\
+					<label class="font-bold font-36" for="'+options[3].optId+'">'+options[3].description+'</label>\
 				</p>\
 				</div>\
 			</div>';
@@ -207,7 +211,7 @@ function DB_getQuestions(){
 		{ id : 0,
 		  ask : "Esta é a pergunta número 1", 
 		  solution : 2, 
-		  options : [	{optId : "Q0-1", description: "opção 1 da pergunta 1"},
+		  options : [	{optId : "Q0-1", description: "opção 1 da pergunta 1 opção 1 da pergunta 1"},
 		  				{optId : "Q0-2", description: "opção 2 da pergunta 1"},
 		  				{optId : "Q0-3", description: "opção 3 da pergunta 1"},
 		  				{optId : "Q0-4", description: "opção 4 da pergunta 1"}		] 

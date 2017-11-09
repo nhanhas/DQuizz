@@ -5,15 +5,67 @@
     font-weight: normal;
     font-style: normal;
   }
+@font-face {
+	font-family: 'OpenSans-Regular';
+	src: url('./assets/OpenSans-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'OpenSans-Bold';
+	src: url('./assets/OpenSans-Bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 body{
 	/*background-color: rgba(18, 18, 18, 1);*/
 	background-color: rgb(1, 1, 1); 
+	font-family: 'OpenSans-Regular',Verdana,Helvetica,sans-serif;
+}
+
+.font-regular{
+	font-family: 'OpenSans-Regular',Verdana,Helvetica,sans-serif;
+}
+
+.font-bold{
+	font-family: 'OpenSans-Bold',Verdana,Helvetica,sans-serif;
+}
+
+.font-light{
 	font-family: 'OpenSans-Light',Verdana,Helvetica,sans-serif;
+}
+
+.font-22{
+	font-size: 22pt;
+}
+
+.font-xs{
+	font-size: 30pt;
+}
+
+.font-36{
+	font-size: 36pt;
+}
+
+.font-md{
+	font-size: 40pt;
+}
+
+.font-lg{
+	font-size: 50pt;
+}
+
+.font-xlg{
+	font-size: 65pt;
+}
+
+.font-200{
+	font-size: 200pt;
 }
 
 .container{
 	width: 100%;
-    zoom: 1.3;
+    zoom: 0.8;/*0.8*/
 }
 
 .text-green{
@@ -69,6 +121,7 @@ body{
 	text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    font-size: 50pt;
 }
 
 /* Footer */
@@ -91,7 +144,14 @@ body{
 	background-color: rgba(128, 193, 46, 1);
 }
 
-
+/* init quizz */
+.hint-number{
+	float: left;
+	margin-right: 30px;
+}
+.hint-desc{
+	margin-top: 50px;
+}
 
 /* Intro */
 .intro-img{
@@ -101,19 +161,23 @@ body{
 
 /* Questions template */
 .q-number{
-	font-size: 80px;
 	float :left;
-	width: 120px;
-	margin-top: -30px;
+    width: 300px;
+    margin-top: -72px;
+    height: 270px;
 }
 
+.q-text{
 
+	    margin-bottom: 100px;
+    margin-top: 30px;
+}
 .q-text h3{
 	margin-bottom: 0;
+    margin-top: 40px;
 }
 
 .q-text span{
-	font-size: 10px;
 }
 
 p{
