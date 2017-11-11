@@ -136,7 +136,43 @@
 
 			<form id="questions">
 				
+				<!-- Questions template here -->
 
+
+				<!-- Attendee data -->
+				<div id="view-attendee">
+					
+					<!-- generic page title -->
+					<hr class="hr-green">
+					<div class="row">
+						<div class="col-xs-12"> 
+							<h3 class="font-regular font-lg text-green"> 
+								Por favor, preencha os campos <br> para inserir os seus dados.
+							</h3>
+							<span class="attendee-hint font-bold font-22 text-white">APÓS PREENCHER, CARREGUE<BR>NO BOTÃ0 PARA FINALIZAR O SEU QUIZ</span>
+						</div>
+					</div>
+					
+					<hr class="hr-green">
+
+					<!-- NOME | EMAIL -->
+					<div class="row">
+						<div class="col-xs-6"><input class="attendee-input font-xs text-white pull-right" type="text" name="name" id="name" placeholder="NOME"></div>
+						<div class="col-xs-6"><input class="attendee-input font-xs text-white" type="email" name="email" id="email" placeholder="EMAIL"></div>
+					</div>
+					
+					
+
+					<!-- footer -->
+					<div class="footer">
+						<div class="row">
+							<div class="col-xs-2 col-xs-offset-5 text-center btn-green" onclick="submitQuiz()">
+								<h4 class="font-bold font-xs text-white">FINALIZAR QUIZ</h4>
+							</div>
+						</div>
+					</div>
+
+				</div>
 
 			</form>
 			

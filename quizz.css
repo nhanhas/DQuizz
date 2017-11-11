@@ -233,4 +233,16 @@ p{
     transform: scale(1);
 }
 
+/* Attendee */
+.attendee-hint{	    
+    position: absolute;
+    top: 90px;
+    right: 20px;
+}
 
+.attendee-input{
+    width: 90%;
+    background-color: rgba(18,18,18,1);
+    border-color: black;
+    border: 1px solid #2f2f2f;
+}

@@ -23,6 +23,7 @@ function resetApp(){
 	/**/$('#view-8').css('display','none');
 	/**/$('#view-9').css('display','none');
 	/**/$('#view-10').css('display','none');
+	/**/$('#view-attendee').css('display','none');
 }
 
 //function to update quizz date and hour
@@ -101,6 +102,10 @@ function viewClicked(questionNumber, isLastQuestion){
 	if(!isLastQuestion){
 		$('#view-' + questionNumber).css('display','none');
 		$('#view-' + (questionNumber + 1)).css('display','block');	
+	}else{
+		//show name email form
+		$('#view-' + questionNumber).css('display','none');
+		$('#view-attendee').css('display','block');
 	}
 	
 	
