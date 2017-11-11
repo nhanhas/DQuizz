@@ -59,6 +59,10 @@ body{
 	font-size: 65pt;
 }
 
+.font-100{
+	font-size: 100pt;
+}
+
 .font-200{
 	font-size: 200pt;
 }
@@ -291,4 +295,62 @@ li{
 	margin-left: 280px !important;
     width: 770px !important;	
 }
-    
+
+
+/* Results */
+svg {
+  width: 200px;
+  height: 200px;
+  -webkit-transform:rotate(90deg);
+          transform:rotate(90deg);
+}
+
+.circle-bg {
+  stroke: rgba(18,18,18,1);
+  stroke-width: 16px;
+  fill: transparent;
+}
+
+.circle {
+  stroke: rgba(128, 193, 46, 1);
+  stroke-width: 16px;
+  stroke-dasharray: 314.2052917480469;
+  fill: transparent;
+}
+
+.percentage {
+ 
+  text-anchor: middle;
+  stroke-width: 0;
+  fill: #AAA;
+}
+
+/* circles by ids */
+#result-1{
+	width: 400px;
+	height: 500px;
+}   
+#result-label-1{
+    top: 420px;
+    position: absolute;
+    left: 515px;
+}
+
+#result-2{
+	width: 800px;
+	height: 800px;
+}   
+#result-label-2{
+	top: 150px;
+    position: absolute;
+    left: 1035px;
+}
+#result-3{
+	width: 400px;
+	height: 500px;
+}    
+#result-label-3{
+    top: 420px;
+    position: absolute;
+    right: 525px;
+}

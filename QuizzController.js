@@ -30,6 +30,10 @@ function startKeyboard() {
 
 }
 
+function endKeyboard(){
+	$( ".classKeyBoard" ).css('display', 'none');
+}
+
 //function to reset application
 function resetApp(){
 	$('#home').css('display','block');
@@ -48,6 +52,8 @@ function resetApp(){
 	/**/$('#view-9').css('display','none');
 	/**/$('#view-10').css('display','none');
 	/**/$('#view-attendee').css('display','none');
+	/**/$('#view-results').css('display','none');
+	/**/$('#view-end').css('display','none');
 }
 
 //function to update quizz date and hour
@@ -236,8 +242,59 @@ function generateOptionsTemplate(question, options){
 
 //#5 - On Submit QUIZZ
 function submitQuiz(){
-	
+	endKeyboard();
+	$('#view-attendee').css('display','none');
+	$('#view-results').css('display','block');
+
+
+	//Build circle 1 
+	buildCircle(1, 100);
+
+	//Build circle 2
+	buildCircle(2, 60);
+
+	//Build circle 3
+	buildCircle(3, 90);
 }
+
+
+
+//---------------------Circles Result---------------------
+function buildCircle(circleId, percentage){
+	var circle = document.getElementById('circle-' + circleId);
+	var length = circle.getTotalLength();
+
+	setPercentage(circle, percentage);
+}
+
+
+function setPercentage(circleReference, percentage) {
+	var length = circleReference.getTotalLength();
+	percentage = 100 - percentage;
+	var new_length = (length / 100)*percentage
+	circleReference.style['stroke-dashoffset'] = new_length;
+}
+/*
+function buildCircle(circleId){
+	var circle = document.getElementById('circle-' + circleId);
+	var length = circle.getTotalLength();
+
+	var text = document.getElementById('percentage-' + circleId);
+	var percentage = text.innerHTML;
+	percentage = percentage.replace(' %','');
+	percentage = parseInt(percentage);
+	setPercentage(circle, percentage);
+}
+
+
+function setPercentage(circleReference, percentage) {
+	var length = circleReference.getTotalLength();
+	percentage = 100 - percentage;
+	var new_length = (length / 100)*percentage
+	circleReference.style['stroke-dashoffset'] = new_length;
+}*/
+
+//-----------------End Circles Result---------------------
 
 /* TODO - APP DATABASE */
 
