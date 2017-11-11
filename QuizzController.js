@@ -233,6 +233,12 @@ function generateOptionsTemplate(question, options){
 
 }
 
+
+//#5 - On Submit QUIZZ
+function submitQuiz(){
+	
+}
+
 /* TODO - APP DATABASE */
 
 //#A - Get Questions from DB

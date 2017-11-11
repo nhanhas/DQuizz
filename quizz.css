@@ -249,14 +249,15 @@ p{
 
 /* keyboard */
 #mlkeyboard {
-	bottom: 130px !important;
+	zoom: 1.2;
+	bottom: 90px !important;
 	font-size: 30pt !important;
 }
 
 ul{
 	background: none !important;
 	width: 100% !important;
-	    margin-left: 280px !important;
+	margin-left: 130px !important;
 }
 li{
 	 background-color: rgba(18,18,18,1) !important;
