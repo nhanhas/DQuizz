@@ -207,13 +207,13 @@ function generateOptionsTemplate(question, options){
 			<div class="row text-white">\
 				<div class="col-xs-6">\
 					<p>\
-						<input type="radio" id="'+options[0].optId+'" name="radio-group">\
+						<input type="radio" id="'+options[0].optId+'" name="'+options[0].optId+'">\
 						<label class="font-bold font-36" for="'+options[0].optId+'">'+options[0].description+'</label>\
 					</p>\
 				</div>\
 				<div class="col-xs-6">\
 					<p>\
-						<input type="radio" id="'+options[1].optId+'" name="radio-group">\
+						<input type="radio" id="'+options[1].optId+'" name="'+options[1].optId+'">\
 						<label class="font-bold font-36" for="'+options[1].optId+'">'+options[1].description+'</label>\
 					</p>\
 				</div>\
@@ -223,13 +223,13 @@ function generateOptionsTemplate(question, options){
 			<div class="row text-white">\
 				<div class="col-xs-6 text-white">\
 				<p>\
-					<input type="radio" id="'+options[2].optId+'" name="radio-group">\
+					<input type="radio" id="'+options[2].optId+'" name="'+options[2].optId+'">\
 					<label class="font-bold font-36" for="'+options[2].optId+'">'+options[2].description+'</label>\
 				</p>\
 				</div>\
 				<div class="col-xs-6">\
 				<p>\
-					<input type="radio" id="'+options[3].optId+'" name="radio-group">\
+					<input type="radio" id="'+options[3].optId+'" name="'+options[3].optId+'">\
 					<label class="font-bold font-36" for="'+options[3].optId+'">'+options[3].description+'</label>\
 				</p>\
 				</div>\
@@ -246,23 +246,54 @@ function submitQuiz(){
 	$('#view-attendee').css('display','none');
 	$('#view-results').css('display','block');
 
+	//#1 - Get all answers to array
+	var answers = $('#questions').serializeArray();
+
+	//#2 - Get DB questions and solutions
+	var questions = DB_getQuestions();
+
+	//Number of Questions, correct and wrong ones
+	var numberQuestions = questions.length;
+	var correctOnes = 0;
+	var wrongOnes = 0;
+	var answerIndex = 0;
+	for(var index = 0; index < questions.length; index++){
+		if(answers[answerIndex+2] && answers[answerIndex+2].name.startsWith('Q'+questions[index].id)){
+			if(answers[answerIndex+2].name === questions[index].solution){
+				correctOnes++;
+			}else{
+				wrongOnes++;
+			}
+			answerIndex++;
+		}else{
+			wrongOnes++;
+		}
+
+		
+
+
+	}
 
 	//Build circle 1 
-	buildCircle(1, 100);
+	buildCircle(1, 100, numberQuestions);
 
 	//Build circle 2
-	buildCircle(2, 60);
+	buildCircle(2, (correctOnes / numberQuestions)*100, correctOnes);
 
 	//Build circle 3
-	buildCircle(3, 90);
+	buildCircle(3, (wrongOnes / numberQuestions)*100, wrongOnes);
 }
 
 
 
 //---------------------Circles Result---------------------
-function buildCircle(circleId, percentage){
+function buildCircle(circleId, percentage, numberToShow){
 	var circle = document.getElementById('circle-' + circleId);
 	var length = circle.getTotalLength();
+
+	//show text
+	var textNumber = (numberToShow <= 9 ? '0'+numberToShow : numberToShow);
+	jQuery('#result-number-' + circleId).text(textNumber);
 
 	setPercentage(circle, percentage);
 }
@@ -303,7 +334,7 @@ function DB_getQuestions(){
 	var questionsList = [
 		{ id : 0,
 		  ask : "Esta é a pergunta número 1", 
-		  solution : 2, 
+		  solution : "Q0-2", 
 		  options : [	{optId : "Q0-1", description: "opção 1 da pergunta 1 opção 1 da pergunta 1"},
 		  				{optId : "Q0-2", description: "opção 2 da pergunta 1"},
 		  				{optId : "Q0-3", description: "opção 3 da pergunta 1"},
@@ -311,7 +342,7 @@ function DB_getQuestions(){
 		},
 		{ id : 1,
 		  ask : "Esta é a pergunta número 2", 
-		  solution : 1, 
+		  solution : "Q1-4", 
 		  options : [	{optId : "Q1-1", description: "opção 1 da pergunta 2"},
 		  				{optId : "Q1-2", description: "opção 2 da pergunta 2"},
 		  				{optId : "Q1-3", description: "opção 3 da pergunta 2"},
@@ -319,7 +350,7 @@ function DB_getQuestions(){
 		},
 		{ id : 2,
 		  ask : "Esta é a pergunta número 3", 
-		  solution : 3, 
+		  solution : "Q2-3", 
 		  options : [	{optId : "Q2-1", description: "opção 1 da pergunta 3"},
 		  				{optId : "Q2-2", description: "opção 2 da pergunta 3"},
 		  				{optId : "Q2-3", description: "opção 3 da pergunta 3"},
@@ -327,7 +358,7 @@ function DB_getQuestions(){
 		},
 		{ id : 3,
 		  ask : "Esta é a pergunta número 4", 
-		  solution : 4, 
+		  solution : "Q3-1", 
 		  options : [	{optId : "Q3-1", description: "opção 1 da pergunta 4"},
 		  				{optId : "Q3-2", description: "opção 2 da pergunta 4"},
 		  				{optId : "Q3-3", description: "opção 3 da pergunta 4"},
