@@ -246,3 +246,48 @@ p{
     border-color: black;
     border: 1px solid #2f2f2f;
 }
+
+/* keyboard */
+#mlkeyboard {
+	bottom: 130px !important;
+	font-size: 30pt !important;
+}
+
+ul{
+	background: none !important;
+	width: 100% !important;
+	    margin-left: 280px !important;
+}
+li{
+	 background-color: rgba(18,18,18,1) !important;
+    border-color: black !important;
+    border: 1px solid #2f2f2f !important;
+
+	width: 90px !important;
+	line-height: 40px !important;
+	margin: 2px !important;
+	font-size: 30pt !important;
+	height: 60px !important;
+}
+
+#mlkeyboard-capslock{
+	width: 185px !important;
+}
+
+#mlkeyboard-return{
+	display: none !important;
+}
+
+#mlkeyboard-left-shift{
+	margin-left: 90px !important;
+}
+
+#mlkeyboard-capslock{
+	margin-left: 50px !important;	
+}
+
+#mlkeyboard-space{
+	margin-left: 280px !important;
+    width: 770px !important;	
+}
+    

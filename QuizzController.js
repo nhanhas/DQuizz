@@ -6,6 +6,30 @@ jQuery(document).ready(function($){
 	
 });
 
+
+function startKeyboard() {
+    $(document).ready(function(){
+	  $('input#name').mlKeyboard({layout: 'en_US', is_hidden: false});
+	});
+
+	$(document).ready(function(){
+	  $('input#email').mlKeyboard({layout: 'en_US' , is_hidden: false});
+	});
+
+	$( "input#name" ).focus(function() {
+  		$( ".classKeyBoard:eq( 0 )" ).css('display', 'block');
+  		$( ".classKeyBoard:eq( 1 )" ).css('display', 'none');
+	});
+
+	$( "input#email" ).focus(function() {
+  		$( ".classKeyBoard:eq( 0 )" ).css('display', 'none');
+  		$( ".classKeyBoard:eq( 1 )" ).css('display', 'block');
+	});
+
+	$( "input#name" ).focus();
+
+}
+
 //function to reset application
 function resetApp(){
 	$('#home').css('display','block');
@@ -104,6 +128,7 @@ function viewClicked(questionNumber, isLastQuestion){
 		$('#view-' + (questionNumber + 1)).css('display','block');	
 	}else{
 		//show name email form
+		startKeyboard();
 		$('#view-' + questionNumber).css('display','none');
 		$('#view-attendee').css('display','block');
 	}
