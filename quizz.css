@@ -59,6 +59,10 @@ body{
 	font-size: 65pt;
 }
 
+.font-80{
+	font-size: 80pt;
+}
+
 .font-100{
 	font-size: 100pt;
 }
@@ -167,14 +171,14 @@ body{
 /* Questions template */
 .q-number{
 	float :left;
-    width: 300px;
+    width: 370px;
     margin-top: -72px;
     height: 270px;
 }
 
 .q-text{
 
-	    margin-bottom: 100px;
+	margin-bottom: 40px;
     margin-top: 30px;
 }
 .q-text h3{
