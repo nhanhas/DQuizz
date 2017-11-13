@@ -202,8 +202,8 @@ function generateQuestionTemplate(question, isLastQuestion){
 			<!-- footer -->\
 			<div class="footer">\
 				<div class="row">\
-					<div class="col-xs-2 col-xs-offset-5 text-center btn-green" onclick="viewClicked('+question.id+', '+isLastQuestion+')">\
-						<h4 class="font-bold font-xs text-white">PRÓXIMA</h4>\
+					<div class="col-xs-2 col-xs-offset-5 text-center" onclick="viewClicked('+question.id+', '+isLastQuestion+')">\
+						<div class="btn-green" style="margin-left: 40px;"><h4 class="font-bold font-xs text-white">PRÓXIMA</h4></div>\
 					</div>\
 				</div>\
 			</div>\
@@ -230,13 +230,13 @@ function generateOptionsTemplate(question, options){
 			<div class="row text-white">\
 				<div class="col-xs-6">\
 					<p>\
-						<input type="radio" id="'+options[0].optId+'" name="'+options[0].optId+'">\
+						<input type="radio" id="'+options[0].optId+'" value="'+options[0].optId+'" name="Q'+question.id+'">\
 						<label '+getStyleCustom(options[0].description)+' class="font-bold font-36" for="'+options[0].optId+'">'+options[0].description+'</label>\
 					</p>\
 				</div>\
 				<div class="col-xs-6">\
 					<p>\
-						<input type="radio" id="'+options[1].optId+'" name="'+options[1].optId+'">\
+						<input type="radio" id="'+options[1].optId+'" value="'+options[1].optId+'" name="Q'+question.id+'">\
 						<label '+getStyleCustom(options[1].description)+' class="font-bold font-36" for="'+options[1].optId+'">'+options[1].description+'</label>\
 					</p>\
 				</div>\
@@ -246,13 +246,13 @@ function generateOptionsTemplate(question, options){
 			<div class="row text-white">\
 				<div class="col-xs-6 text-white">\
 				<p>\
-					<input type="radio" id="'+options[2].optId+'" name="'+options[2].optId+'">\
+					<input type="radio" id="'+options[2].optId+'" value="'+options[2].optId+'" name="Q'+question.id+'">\
 					<label '+getStyleCustom(options[2].description)+' class="font-bold font-36" for="'+options[2].optId+'">'+options[2].description+'</label>\
 				</p>\
 				</div>\
 				<div class="col-xs-6">\
 				<p>\
-					<input type="radio" id="'+options[3].optId+'" name="'+options[3].optId+'">\
+					<input type="radio" id="'+options[3].optId+'" value="'+options[3].optId+'" name="Q'+question.id+'">\
 					<label '+getStyleCustom(options[3].description)+' class="font-bold font-36" for="'+options[3].optId+'">'+options[3].description+'</label>\
 				</p>\
 				</div>\
@@ -282,7 +282,7 @@ function submitQuiz(){
 	var answerIndex = 0;
 	for(var index = 0; index < questions.length; index++){
 		if(answers[answerIndex+2] && answers[answerIndex+2].name.startsWith('Q'+questions[index].id)){
-			if(answers[answerIndex+2].name === questions[index].solution){
+			if(answers[answerIndex+2].value === questions[index].solution){
 				correctOnes++;
 			}else{
 				wrongOnes++;
@@ -305,6 +305,10 @@ function submitQuiz(){
 
 	//Build circle 3
 	buildCircle(3, (wrongOnes / numberQuestions)*100, wrongOnes);
+
+
+
+	//TODO - Answers DB GOES HERE
 }
 
 
