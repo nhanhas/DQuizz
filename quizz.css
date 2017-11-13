@@ -322,6 +322,10 @@ p{
     margin-top: 30px;
 }
 
+.attendee-input-error{
+	border: 1px solid red;
+}
+
 /* keyboard */
 #mlkeyboard {
 	zoom: 1.1;

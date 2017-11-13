@@ -6,6 +6,7 @@ jQuery(document).ready(function($){
 	generateQuestions();//generate questions to app
 	resetApp();//reset defaults
 	
+	//TODO - when 1 min inactivo, go to init
 });
 
 
@@ -266,12 +267,24 @@ function generateOptionsTemplate(question, options){
 
 //#5 - On Submit QUIZZ
 function submitQuiz(){
+	//#1 - Get all answers to array
+	var answers = $('#questions').serializeArray();
+
+	var email = answers[1].value;//email is at index = 1
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
+	if(!email.match(mailformat)) {  
+		jQuery('#email').addClass('attendee-input-error');
+		return false;
+	} 
+	//Validate Email !
+
+
+
 	endKeyboard();
 	$('#view-attendee').css('display','none');
 	$('#view-results').css('display','block');
 
-	//#1 - Get all answers to array
-	var answers = $('#questions').serializeArray();
+	
 
 	//#2 - Get DB questions and solutions
 	var questions = DB_getQuestions();
