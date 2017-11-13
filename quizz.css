@@ -76,6 +76,7 @@ body{
     zoom: 0.8;/*0.8*/
     padding-right: 200px;
     padding-left: 200px;
+    padding-top: 110px;
 }
 
 .text-green{
@@ -107,6 +108,7 @@ body{
 
 .touch-area{
 	position: absolute;
+	width: 100%;
     top: 0;
     bottom: 0;
     left: 0;
@@ -125,7 +127,8 @@ body{
 }
 
 .header-logo img{
-	max-width: 250px;
+	max-width: 285px;
+	margin-top: 25px;
 }
 
 .header-quizz-name{
@@ -282,15 +285,16 @@ ul{
 	margin-left: 130px !important;
 }
 li{
-	 background-color: rgba(18,18,18,1) !important;
+	background-color: rgba(18,18,18,1) !important;
     border-color: black !important;
     border: 1px solid #2f2f2f !important;
-
+    color:white;
 	width: 90px !important;
 	line-height: 40px !important;
 	margin: 2px !important;
 	font-size: 30pt !important;
 	height: 60px !important;
+	padding-top: 15px;
 }
 
 #mlkeyboard-capslock{
