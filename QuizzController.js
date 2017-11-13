@@ -184,16 +184,17 @@ function generateQuestions(){
 
 //#4.1 - (AUX) Generate questions template
 function generateQuestionTemplate(question, isLastQuestion){
+	var tooBigAsk = (question.ask.length > 99);
+
 	var template = '\
 		<div id="view-'+question.id+'">\
 			<!-- generic page title -->\
 			<hr class="hr-green">\
 			<div class="q-number font-regular font-200 text-green">'+ ((question.id+1) <= 9? ("0"+(question.id+1)) : (question.id+1) )+'</div>\
-			<div class="q-text  text-green"> \
-				<h3 class="font-regular font-lg q-text">'+ question.ask +'</h3>\
-				<span class="font-bold font-22 text-white">ESCOLHA UMA DAS SEGUINTES OPÇÕES:</span>\
+			<div class="q-text  text-green" style="height: 230px;"> \
+				<h3  style="'+ (tooBigAsk ? "margin-bottom:52px" : "") +'" class="font-regular '+ (tooBigAsk ?  "font-md" : "font-lg") +'  q-text">'+ question.ask +'</h3>\
+				<span class="font-bold font-22 text-white" >ESCOLHA UMA DAS SEGUINTES OPÇÕES:</span>\
 			</div>\
-			<br>\
 			<hr class="hr-green">\
 			\
 			<div id="Options-'+question.id+'">\

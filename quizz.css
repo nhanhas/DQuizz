@@ -35,6 +35,11 @@ body{
 	font-family: 'OpenSans-Light',Verdana,Helvetica,sans-serif;
 }
 
+.font-18{
+	font-size: 18pt;
+}
+
+
 .font-22{
 	font-size: 22pt;
 }
@@ -121,13 +126,13 @@ body{
 
 /* Header */
 .header{	
-	margin-top: 50px;
+	margin-top: 25px;
 	margin-bottom: 30px;
     background-color: black;
 }
 
 .header-logo img{
-	max-width: 285px;
+	max-width: 355px;
 	margin-top: 25px;
 }
 
@@ -150,15 +155,34 @@ body{
 
 
 /* Generic between pages */
+hr {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.h3-200{
+	height: 200px;
+	padding-top: 60px;
+}
+
 .hr-green{
-	border-top: 1px solid rgba(128, 193, 46, 1);
+	border-top: 2px solid rgba(128, 193, 46, 1);
 }
 .btn-green{
 	cursor: pointer;	
-	background-color: rgba(128, 193, 46, 1);
+	
 	height: 90px;
     width: 290px;
     padding-top: 15px;
+
+	background-color:#80c12e;
+	filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#80c12e, endColorstr=#4d8a00);
+	background-image:-moz-linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:-webkit-linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:-ms-linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:-o-linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:-webkit-gradient(linear, right top, right bottom, color-stop(50%,#80c12e), color-stop(100%,#4d8a00));
 }
 
 .btn-green-2{
@@ -167,6 +191,16 @@ body{
 	height: 90px;
     width: 385px;
     padding-top: 15px;
+
+    background-color:#80c12e;
+	filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#80c12e, endColorstr=#4d8a00);
+	background-image:-moz-linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:-webkit-linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:-ms-linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:-o-linear-gradient(top, #80c12e 50%, #4d8a00 100%);
+	background-image:-webkit-gradient(linear, right top, right bottom, color-stop(50%,#80c12e), color-stop(100%,#4d8a00));
+
 }
 
 /* init quizz */
@@ -181,6 +215,7 @@ body{
 /* Intro */
 .intro-img{
 	width: 100%;
+	margin-top: 25px;
 }
 
 
@@ -188,17 +223,17 @@ body{
 .q-number{
 	float :left;
     width: 370px;
-    margin-top: -72px;
-    height: 330px;
+    margin-top: -82px;
+    height: 260px;
 }
 
 .q-text{
-
-    margin-top: 30px;
+    margin-top: 0;
 }
 .q-text h3{
-	margin-bottom: 20px;
-    margin-top: 40px;
+	padding-top: 10px;
+	margin-bottom: 22px;
+    margin-top: 0;
 }
 
 .q-text span{
@@ -228,8 +263,8 @@ p{
     position: absolute;
     left: 0;
     top: 10px;
-    width: 100px;
-    height: 100px;    
+    width: 106px;
+    height: 106px;    
     border: 5px solid #80c12e;
     border-radius: 100%;
     background: #1a1a1a;
@@ -237,8 +272,8 @@ p{
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
     content: '';
-    width: 82px;
-    height: 82px;
+    width: 88px;
+    height: 88px;
     background: #80c12e;
     position: absolute;
     top: 19px;
@@ -246,6 +281,14 @@ p{
     border-radius: 100%;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
+
+    background: #80c12e;
+    background: -webkit-radial-gradient(circle, #80c12e, #80c12e, #023802);
+    background: -o-radial-gradient(circle, #80c12e, #80c12e, #023802);
+    background: -moz-radial-gradient(circle, #80c12e, #80c12e, #023802);
+    background: radial-gradient(circle, #80c12e, #80c12e, #023802);
+
+
 }
 [type="radio"]:not(:checked) + label:after {
     opacity: 0;
@@ -259,6 +302,11 @@ p{
 }
 
 /* Attendee */
+.attendee-h3{
+	height: 200px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
 .attendee-hint{	    
     position: absolute;
     top: 90px;
@@ -270,11 +318,13 @@ p{
     background-color: rgba(18,18,18,1);
     border-color: black;
     border: 1px solid #2f2f2f;
+    height: 60px;
+    margin-top: 30px;
 }
 
 /* keyboard */
 #mlkeyboard {
-	zoom: 1.2;
+	zoom: 1.1;
 	bottom: 90px !important;
 	font-size: 30pt !important;
 }
@@ -282,7 +332,7 @@ p{
 ul{
 	background: none !important;
 	width: 100% !important;
-	margin-left: 130px !important;
+	margin-left: 200px !important;
 }
 li{
 	background-color: rgba(18,18,18,1) !important;
