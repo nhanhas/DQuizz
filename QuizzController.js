@@ -1,4 +1,5 @@
-var TIMMER_TO_REFRESH = 5000; //5sec
+var TIMMER_TO_REFRESH = 60000; //60sec
+var TIMMER_TO_END = 5000; //5sec
 
 /* On Start App */
 jQuery(document).ready(function($){
@@ -111,7 +112,7 @@ function goToCredits(){
 	//Start Timer to re-start
 	setTimeout(function(){ 
 		location.reload(); 
-	}, TIMMER_TO_REFRESH);
+	}, TIMMER_TO_END);
 
 }
 
@@ -129,6 +130,9 @@ function viewAClick(){
 
 }
 
+
+var timeoutHandle = undefined;
+
 //#2 - Click "Iniciar Quiz" in view 1 (Hints)
 function viewBClick(){
 	$('#view-a').css('display','none');
@@ -140,44 +144,69 @@ function viewBClick(){
 	$('#view-4').css('display','none');
 	$('#view-5').css('display','none');
 	$('#view-6').css('display','none');
+
+	// in your click function, call clearTimeout
+	window.clearTimeout(timeoutHandle);
+	// in the example above, assign the result
+	timeoutHandle = window.setTimeout(function(){ 
+								location.reload(); 
+							}, TIMMER_TO_REFRESH);
 }
 
+
 //#3 - Click on question number
-function viewClicked(questionNumber, isLastQuestion){
+function viewClicked(questionNumber, isLastQuestion){	
+
 	if(!isLastQuestion){
 		$('#view-' + questionNumber).css('display','none');
 		$('#view-' + (questionNumber + 1)).css('display','block');	
+
+		// in your click function, call clearTimeout
+		window.clearTimeout(timeoutHandle);
+		// in the example above, assign the result
+		timeoutHandle = window.setTimeout(function(){ 
+									location.reload(); 
+								}, TIMMER_TO_REFRESH);
 	}else{
+		window.clearTimeout(timeoutHandle);
 		//show name email form
 		startKeyboard();
 		$('#view-' + questionNumber).css('display','none');
 		$('#view-attendee').css('display','block');
 	}
 	
-	
+
+
+
+
 }
 
 
 //#4 - Generate questions html
 function generateQuestions(){
 	//#1 - Get questions from DB
-	var questionsList = DB_getQuestions();
+	$.get("./server/getQuestions.php", function(data, status){
 
-	//#2 - add question pages
-	for(var index = 0; index < questionsList.length; index++){
-		var isLastQuestion = (index === (questionsList.length - 1));
-		var questionTemplate = generateQuestionTemplate(questionsList[index], isLastQuestion);
-		
-		//add question title to generic Form
-		var e = document.getElementById('questions');
-    	e.innerHTML += questionTemplate;
+		var questionsList = JSON.parse(data).questions;
 
-    	//#3 - add options to questions
-    	var optionsTemplate = generateOptionsTemplate(questionsList[index], questionsList[index].options);
-    	var questionElement = document.getElementById('Options-' + questionsList[index].id);
-    	questionElement.innerHTML = optionsTemplate;
+		//#2 - add question pages
+		for(var index = 0; index < questionsList.length; index++){
+			var isLastQuestion = (index === (questionsList.length - 1));
+			var questionTemplate = generateQuestionTemplate(questionsList[index], isLastQuestion);
+			
+			//add question title to generic Form
+			var e = document.getElementById('questions');
+	    	e.innerHTML += questionTemplate;
 
-	}
+	    	//#3 - add options to questions
+	    	var optionsTemplate = generateOptionsTemplate(questionsList[index], questionsList[index].options);
+	    	var questionElement = document.getElementById('Options-' + questionsList[index].id);
+	    	questionElement.innerHTML = optionsTemplate;
+
+		}
+
+		resetApp();//reset defaults
+	});
 
 
 
@@ -270,14 +299,23 @@ function submitQuiz(){
 	//#1 - Get all answers to array
 	var answers = $('#questions').serializeArray();
 
+	//Validate Email !
 	var email = answers[1].value;//email is at index = 1
 	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
 	if(!email.match(mailformat)) {  
 		jQuery('#email').addClass('attendee-input-error');
 		return false;
 	} 
-	//Validate Email !
+	
 
+	//Reset Build circle 1 
+	buildCircle(1, 0, 10);
+
+	//Reset Build circle 2
+	buildCircle(2, 0, 10);
+
+	//Reset Build circle 3
+	buildCircle(3, 0, 10);
 
 
 	endKeyboard();
@@ -287,42 +325,59 @@ function submitQuiz(){
 	
 
 	//#2 - Get DB questions and solutions
-	var questions = DB_getQuestions();
+	//#1 - Get questions from DB
+	$.get("./server/getQuestions.php", function(data, status){
 
-	//Number of Questions, correct and wrong ones
-	var numberQuestions = questions.length;
-	var correctOnes = 0;
-	var wrongOnes = 0;
-	var answerIndex = 0;
-	for(var index = 0; index < questions.length; index++){
-		if(answers[answerIndex+2] && answers[answerIndex+2].name.startsWith('Q'+questions[index].id)){
-			if(answers[answerIndex+2].value === questions[index].solution){
-				correctOnes++;
+		var questions = JSON.parse(data).questions;
+
+		//Number of Questions, correct and wrong ones
+		var numberQuestions = questions.length;
+		var correctOnes = 0;
+		var wrongOnes = 0;
+		var answerIndex = 0;
+		for(var index = 0; index < questions.length; index++){
+			if(answers[answerIndex+2] && answers[answerIndex+2].name.startsWith('Q'+questions[index].id)){
+				if(answers[answerIndex+2].value === questions[index].solution){
+					correctOnes++;
+				}else{
+					wrongOnes++;
+				}
+				answerIndex++;
 			}else{
 				wrongOnes++;
 			}
-			answerIndex++;
-		}else{
-			wrongOnes++;
+
+			
+
+
 		}
 
-		
+		//Build circle 1 
+		buildCircle(1, 100, numberQuestions);
 
+		//Build circle 2
+		buildCircle(2, (correctOnes / numberQuestions)*100, correctOnes);
 
-	}
+		//Build circle 3
+		buildCircle(3, (wrongOnes / numberQuestions)*100, wrongOnes);
 
-	//Build circle 1 
-	buildCircle(1, 100, numberQuestions);
+		//TODO - Answers DB GOES HERE
+		    // Fire off the request to /form.php
+	    var request = $.ajax({
+	        url: "./server/saveAnswers.php",
+	        type: "post",
+	        data: answers
+	    });
 
-	//Build circle 2
-	buildCircle(2, (correctOnes / numberQuestions)*100, correctOnes);
+	    // Callback handler that will be called on success
+	    request.done(function (response, textStatus, jqXHR){
+	        // Log a message to the console
+	        console.log("Hooray, it worked!");
+	    });
 
-	//Build circle 3
-	buildCircle(3, (wrongOnes / numberQuestions)*100, wrongOnes);
+	});
 
-
-
-	//TODO - Answers DB GOES HERE
+	
 }
 
 
@@ -346,25 +401,7 @@ function setPercentage(circleReference, percentage) {
 	var new_length = (length / 100)*percentage
 	circleReference.style['stroke-dashoffset'] = new_length;
 }
-/*
-function buildCircle(circleId){
-	var circle = document.getElementById('circle-' + circleId);
-	var length = circle.getTotalLength();
 
-	var text = document.getElementById('percentage-' + circleId);
-	var percentage = text.innerHTML;
-	percentage = percentage.replace(' %','');
-	percentage = parseInt(percentage);
-	setPercentage(circle, percentage);
-}
-
-
-function setPercentage(circleReference, percentage) {
-	var length = circleReference.getTotalLength();
-	percentage = 100 - percentage;
-	var new_length = (length / 100)*percentage
-	circleReference.style['stroke-dashoffset'] = new_length;
-}*/
 
 //-----------------End Circles Result---------------------
 
@@ -372,7 +409,12 @@ function setPercentage(circleReference, percentage) {
 
 //#A - Get Questions from DB
 function DB_getQuestions(){
-	var questionsList = [
+	var questionsList = undefined;
+	$.get("./server/getQuestions.php", function(data, status){
+        console.log(data.questions);
+    });
+
+	/*var questionsList = [
 		{ id : 0,
 		  ask : "A maioria dos portugueses espera que a economia nacional, no próximo ano, evolua de forma...", 
 		  solution : "Q0-1", 
@@ -454,7 +496,7 @@ function DB_getQuestions(){
 		  				{optId : "Q9-4", description: "Preços mais baixos"}		] 
 		}
 
-	];
+	];*/
 
 	return questionsList;
 }
